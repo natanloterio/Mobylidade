@@ -17,16 +17,17 @@ function logar($usuario,$senha){
 			
 			if($arRetorno['login'] === $usuario){
 			
-				session_start();
-				$_SESSION['USUARIO_LOGIN'] = $usuario;
-				$_SESSION['USUARIO_ID'] = $arRetorno['USUARIO_ID'];
-				$_SESSION['USUARIO_NOME'] = $arRetorno['USUARIO_NOME'];
+				//session_start();
+				setcookie('USUARIO_LOGIN',$usuario);
+				setcookie('USUARIO_ID',$arRetorno['USUARIO_ID']);
+				setcookie('USUARIO_NOME',$arRetorno['USUARIO_NOME']);
+				
 				//echo "USUARIO_ID: ". $_SESSION['USUARIO_ID'];
 				//exit;
 				// salva sessao no banco
 				//TODO
 				// retorna sucesso
-				session_write_close();
+				
 				
 				$host  = $_SERVER['HTTP_HOST'];
 				$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');

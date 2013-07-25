@@ -1,9 +1,7 @@
 <?php
 
 error_reporting(E_ALL);
-session_start();
-
- if(isset($_SESSION['USUARIO_LOGIN'])){
+ if(isset($_COOKIE['USUARIO_LOGIN'])){
     
  
  }else{
