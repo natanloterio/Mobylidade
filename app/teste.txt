@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="NPP-Plugin">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+ <body>
+  <script type="text/javascript">
+    
+	  var Objeto = function(){
+	    this.conexao = function(){
+				$('#log').append("<p>Objeto.conexao</p>');
+					this.onconect = function(){
+						$('#log').append("<p>Objeto.conexao.onconect</p>');
+					
+					}
+			}
+	  
+		}	  
+		
+		var obj = new Objeto();
+	  
+	  
+  </script>
+ </body>
+</html>

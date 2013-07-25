@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+// Array Remove - By John Resig (MIT Licensed)
+Array.prototype.remove = function(from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};
+ function displayDate(){
+ var a = ['natan','teste','fim'];
+ a.remove(1);
+ 
+ for(var i=0; i<a.length;i++){
+    document.getElementById('demo').innerHTML = a[i];
+
+  }
+}
+
+</script>
+</head>
+<body>
+
+<h1>My First JavaScript</h1>
+<p id="demo">This is a paragraph.</p>
+
+<button type="button" onclick="displayDate()">Display Date</button>
+
+</body>
+</html> 
