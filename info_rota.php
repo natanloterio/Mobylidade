@@ -26,6 +26,7 @@ function getRotaID(){
   R.ORIGEM_LAT,
   R.ORIGEM_LNG,
   R.DESTINO_LAT,
+  R.valor,
   R.DESTINO_LNG,  
   concat(R.ORIGEM_CIDADE ,'/',R.ORIGEM_UF) as ORIGEM, 
   concat(R.DESTINO_CIDADE ,'/',R.DESTINO_UF) as DESTINO from ROTA R, USUARIOS U
@@ -46,6 +47,7 @@ function getRotaID(){
    $destinoLng = $linha['DESTINO_LNG'];   
    $origem = $linha['ORIGEM'];
    $destino = $linha['DESTINO'];
+   $valor=$linha['valor'];
    
   }else{
    echo "erro:".mysql_error();
@@ -114,6 +116,7 @@ function calcRoute() {
  .info_rota{
   display: inline-block;
   margin-bottom: 10px;
+  width: 100%;
  }
  
  #mapa_rota{
@@ -121,7 +124,25 @@ function calcRoute() {
   min-height: 400px;
   min-width:  350px;
  }
- 
+ .chamarRota{
+    border-radius: 20px;
+    background-color: white;
+    height: 70px;
+    
+    position: relative;
+ }
+ .botaoChamar{
+    position: absolute;
+    top: 16px;
+    right: 20px;
+ }
+ .fontePreco{
+    color: green;
+    font-size: 20px;
+    font-family: verdana;
+    line-height: 70px;
+    margin: 25px;
+ }
 </style>
 
 
@@ -164,7 +185,10 @@ function calcRoute() {
         <div data-role="content"  class="content"> 		   
 	 
 	 <div class="info_rota">
-	  <h3>De <?php echo $origem; ?> até <?php echo $destino; ?></h3> <a  class="ui-btn-right"  href="chamar_guincho.php?rota_id=<?php echo $rotaID?>" data-role="button" data-icon="check" data-theme="a">Chamar</a>	 
+	  <h3>De <?php echo $origem; ?> até <?php echo $destino; ?></h3>
+	  <div class="chamarRota">
+	    <font class="fontePreco">R$ <?= $valor; ?></font> <a  class="ui-btn-right botaoChamar"  href="chamar_guincho.php?rota_id=<?php echo $rotaID?>" data-role="button" data-icon="check" data-theme="a">Chamar</a>
+	  </div>
 	 </div>
 	 
 	 <div id="mapa_rota">
