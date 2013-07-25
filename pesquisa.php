@@ -1,6 +1,6 @@
 <?php require_once('login_util.php');
 
-function mostraBotaoEsquerdaHeader(){
+function mostraBotaoDireitaHeader(){
  // se o carinha estiver logado
  $usuarioLogadoID = getUsuarioLogadoID();
  $usuarioLogadoNome = getUsuarioLogadoNomeCompleto();
@@ -19,6 +19,26 @@ function mostraBotaoEsquerdaHeader(){
  
  
 }
+
+function mostraBotaoEsquerdaHeader(){
+ // se o carinha estiver logado
+ $usuarioLogadoID = getUsuarioLogadoID();
+ $usuarioLogadoNome = getUsuarioLogadoNomeCompleto();
+  
+ if($usuarioLogadoID > 0){
+  ?>
+  
+  <a class="ui-icon-menu" href="#" data-role="button" data-icon="grid" data-theme="a">Menu</a>
+  
+  <?php
+ }else{
+  ?>
+  
+  <?php
+ } 
+ 
+}
+
 
 
 ?>
@@ -79,12 +99,14 @@ function mostraBotaoEsquerdaHeader(){
  <body>
 <!-- Inicio da pagina -->
 <div id="page_pesquisa" data-role="page">
- 
+	<!-- Menu lateral esquerda-->
+	<?php include('menu-lateral.php'); ?>
+	<!-- /panel --> 
 	<!-- Inicio cabecalho da pagina -->
 	<div data-role="header">
-		
-		<h1>Procurar Ve&iacute;culos</h1>
 		<?php mostraBotaoEsquerdaHeader();?>
+		<h1>Procurar Ve&iacute;culos</h1>
+		<?php mostraBotaoDireitaHeader();?>
 	</div>
 	<!-- Fim cabecalho da pagina -->
 	<!-- Inicio conteudo da pagina -->

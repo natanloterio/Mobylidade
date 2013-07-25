@@ -1,9 +1,9 @@
 <?php
-
+session_start();
  function getUsuarioLogadoLogin(){
   $login = '';
-  if(isset($_COOKIE['USUARIO_LOGIN'])){
-    $login = $_COOKIE['USUARIO_LOGIN'] ;
+  if(isset($_SESSION['USUARIO_LOGIN'])){
+    $login = $_SESSION['USUARIO_LOGIN'] ;
   }
   
   return $login;
@@ -12,8 +12,8 @@
 
 function getUsuarioLogadoID(){
   $id = -1;
-  if(isset($_COOKIE['USUARIO_ID'])){
-    $id = $_COOKIE['USUARIO_ID'] ;
+  if(isset($_SESSION['USUARIO_ID'])){
+    $id = $_SESSION['USUARIO_ID'] ;
   }
   
   return intval($id);
@@ -23,8 +23,8 @@ function getUsuarioLogadoID(){
 
 function getUsuarioLogadoNomeCompleto(){
   $nome = '';
-  if(isset($_COOKIE['USUARIO_NOME'])){
-    $nome = $_COOKIE['USUARIO_NOME'] ;
+  if(isset($_SESSION['USUARIO_NOME'])){
+    $nome = $_SESSION['USUARIO_NOME'] ;
   }else{
     $nome = 'desconhecido';
   }
@@ -35,8 +35,8 @@ function getUsuarioLogadoNomeCompleto(){
 
 function getUserProfileImageUrl(){
   $url_profile = '';
-  if(isset($_COOKIE['USUARIO_PROFILE_IMAGE_URL'])){
-    $url_profile = $_COOKIE['USUARIO_PROFILE_IMAGE_URL'] ;
+  if(isset($_SESSION['USUARIO_PROFILE_IMAGE_URL'])){
+    $url_profile = $_SESSION['USUARIO_PROFILE_IMAGE_URL'] ;
   }else{
     $url_profile = 'image/profile.png';
   }  
