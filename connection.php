@@ -5,7 +5,7 @@ class BancoDados
    
     private function __construct() 
     {
-        $link = mysql_connect('localhost', 'root', ''); //##dbconn
+        $link = mysql_connect('192.168.1.4', 'root', 'root123'); //##dbconn
         if (!$link) {
             die('Não foi possível conectar: ' . mysql_error()."<br><br>");
         }
