@@ -1,6 +1,7 @@
 <?php //require_once('sessao.php'); ?>
 <?php
 include_once ("connection.php");
+include_once ("login_util.php");
 error_reporting(E_ALL);
 
 function getRotaID(){
@@ -184,12 +185,24 @@ function calcRoute() {
 	<!-- Inicio conteudo da pagina -->  
         <div data-role="content"  class="content"> 		   
 	 
-	 <div class="info_rota">
-	  <h3>De <?php echo $origem; ?> até <?php echo $destino; ?></h3>
-	  <div class="chamarRota">
-	    <font class="fontePreco">R$ <?= $valor; ?></font> <a  class="ui-btn-right botaoChamar"  href="chamar_guincho.php?rota_id=<?php echo $rotaID?>" data-role="button" data-icon="check" data-theme="a">Chamar</a>
+	 <?
+	 if(getUsuarioLogadoID() == -1){
+	    $xLabel = 'Login';
+	    $xURl = 'fazer_login.php';
+	    setURLRedirect($_SERVER ['REQUEST_URI']);
+	  }else{
+	    $xLabel = 'Chamar';
+	    $xURl = "chamar_guincho.php?rota_id=$rotaID";
+	    setURLRedirect('-1');
+	  }
+	 ?>
+	  <div class="info_rota">
+	   <h3>De <?php echo $origem; ?> até <?php echo $destino; ?></h3>
+	   <div class="chamarRota">
+	     <font class="fontePreco">R$ <?= $valor; ?></font> <a  class="ui-btn-right botaoChamar"  href=<? echo($xURl); ?> data-role="button" data-icon="check" data-theme="a"><? echo $xLabel; ?></a>
+	   </div>
 	  </div>
-	 </div>
+
 	 
 	 <div id="mapa_rota">
 	  

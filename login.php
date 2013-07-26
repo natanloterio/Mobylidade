@@ -3,6 +3,7 @@
 //error_reporting(E_ALL);
 require_once('connection.php');
 require_once('json_util.php');
+require_once ("login_util.php");
 
 //header('Content-type: application/json');
 
@@ -32,7 +33,12 @@ function logar($usuario,$senha){
 				$host  = $_SERVER['HTTP_HOST'];
 				$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 				$extra = 'inicio.php';
-				$header = "Location: http://$host$uri/$extra";
+				
+				$redirect = getURLRedirect();
+				if ($redirect !== '-1')
+				  $header = "Location: http://$host/$redirect";
+				else
+				  $header = "Location: http://$host$uri/$extra";
 				//echo "redirecionando para $header";
 				header($header);
 				exit;

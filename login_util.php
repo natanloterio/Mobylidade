@@ -82,4 +82,16 @@ function getUsuarioTipo(){
 
 }
 
+function setURLRedirect($aURL){
+ setcookie('URL_REDIRECT',$aURL);
+}
+function getURLRedirect(){
+  $URL = '-1';
+  if(isset($_COOKIE['URL_REDIRECT'])){
+    $URL = $_COOKIE['URL_REDIRECT'] ;
+  }
+  
+  return $URL;
+}
+
 ?>
