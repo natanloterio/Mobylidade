@@ -3,8 +3,22 @@
    var origem = null;
    var destino = null;
       
-   function pesquisaRota(origem_cidade,origem_uf,destino_cidade,destino_uf) {
-
+   function pesquisaRota() {
+         
+            
+          var positionOrigem = origem.geometry.location;
+          var positionDestino= destino.geometry.location;
+          
+          var origem_cidade = origem.address_components[0].short_name;
+          var origem_uf    = origem.address_components[1].short_name;
+          
+          var destino_cidade = destino.address_components[0].short_name;
+          var destino_uf    = destino.address_components[1].short_name;
+            
+         
+         
+   
+   
    	var dados = {
                   "acao": "consulta",
                   "origem_cidade": origem_cidade,
@@ -80,19 +94,6 @@
           });
 
 
-       $('#origem_buton').on('click',function(){
-
-         $("#popupOrigem").popup({ history: false,
-                 afteropen: function( event, ui ) {
-                         $('#origem_criteria').focus();
-                 }
-         });
-
-         $("#popupOrigem").popup("open");
-
-
-       });
-
 
         // DESTINO
        $('#destino_criteria').keypress(function() {
@@ -106,9 +107,13 @@
           .bind("geocode:result", function(event, result){
             $("#label_btn_destino").html(result.formatted_address);
             
-            destino = result;
-            
-            $("#popupDestino").popup("close");
+          destino = result;
+                     // se origem e destino foram definidos
+          if (origem && destino) {
+                         
+             pesquisaRota();
+          }
+
           })
           .bind("geocode:error", function(event, status){
             alert("ERROR: " + status);
@@ -117,35 +122,13 @@
             alert("Multiple: " + results.length + " results found");
           });
 
-
-       $('#destino_buton').on('click',function(){
-
-         $("#popupDestino").popup({ history: false,
-                 afteropen: function( event, ui ) {
-                         $('#destino_criteria').focus();
-                 }
-         });
-
-         $("#popupDestino").popup("open");
-
-
-       });
        
        $('#pesquisa_pesquisar_btn').on('click',function(){
          
          // se origem e destino foram definidos
          if (origem && destino) {
-            
-            var positionOrigem = origem.geometry.location;
-            var positionDestino= destino.geometry.location;
-            
-            var origem_cidade = origem.address_components[0].short_name;
-            var origem_uf    = origem.address_components[1].short_name;
-            
-            var destino_cidade = destino.address_components[0].short_name;
-            var destino_uf    = destino.address_components[1].short_name;
-            
-            pesquisaRota(origem_cidade,origem_uf,destino_cidade,destino_uf);
+                        
+            pesquisaRota();
          }
          
        });
