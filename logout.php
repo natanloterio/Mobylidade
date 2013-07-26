@@ -1,7 +1,7 @@
 <?php
-
-session_start();
-session_destroy();
+setcookie("USUARIO_ID","");
+setcookie("USUARIO_NOME","");
+setcookie("USUARIO_LOGIN","");
   $host  = $_SERVER['HTTP_HOST'];
   $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
   $extra = 'inicio.php';
