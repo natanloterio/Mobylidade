@@ -1,5 +1,5 @@
 <?php
-include_once (dirname(__FILE__) . "/connection.php");
+include_once ('connection.php');
 include_once  ('login_util.php');
 include_once  ('sessao.php');
 
@@ -70,7 +70,7 @@ function incluirVeiculo($tipoVeiculoID, $aIDMarca, $aPlaca, $aModelo, $xUsuarioI
 	$sucess = false;
 	$return = array("sucess"=>0);
 	
-	$sucess = ExecSQL("INSERT INTO VEICULO (tipo_veiculo_id, fk_marca_id, placa, modelo, USUARIO_ID,cor) VALUES ($tipoVeiculoID, $aIDMarca, '$aPlaca', '$aModelo',$xUsuarioID,'$xCor')");
+	$sucess = ExecSQL("INSERT INTO veiculo (tipo_veiculo_id, fk_marca_id, placa, modelo, USUARIO_ID,cor) VALUES ($tipoVeiculoID, $aIDMarca, '$aPlaca', '$aModelo',$xUsuarioID,'$xCor')");
 	if($sucess){
 		$return = array("sucess"=>1);
 	}
@@ -78,11 +78,11 @@ function incluirVeiculo($tipoVeiculoID, $aIDMarca, $aPlaca, $aModelo, $xUsuarioI
 }
 
 function alterarVeiculo($aID, $aIDMarca, $aPlaca, $aModelo){
-	return ExecSQL("UPDATE VEICULO SET fk_marca_id = $aIDMarca, placa = $aPlaca, modelo = $aModelo WHERE id = $aID");
+	return ExecSQL("UPDATE veiculo SET fk_marca_id = $aIDMarca, placa = $aPlaca, modelo = $aModelo WHERE id = $aID");
 }
 
 function alterarParaExcluido($aID){
-	if(ExecSQL("UPDATE VEICULO SET excluido = 1 WHERE id = $aID")){
+	if(ExecSQL("UPDATE veiculo SET excluido = 1 WHERE id = $aID")){
 		sucesso();
 	}else{
 		fracasso();
@@ -92,7 +92,7 @@ function alterarParaExcluido($aID){
 
 function consultarVeiculo($aID){
 	$xReturn = array();
-	$xConsulta = ExecSQL("SELECT * FROM VEICULO WHERE excluido <> 1 and id = $aID");
+	$xConsulta = ExecSQL("SELECT * FROM veiculo WHERE excluido <> 1 and id = $aID");
 	$xCursor = mysql_fetch_array($xConsulta);
 	$xCount =  mysql_numrows($xConsulta);
 	
@@ -113,7 +113,7 @@ function consultarVeiculo($aID){
 function getTodosVeiculos($usuarioID){
 	
 $sql = "SELECT V.ID, M.NOME AS MARCA, V.MODELO, V.PLACA, V.USUARIO_ID, T.DESCRICAO AS TIPO_VEICULO ".
-	"FROM VEICULO V ".
+	"FROM veiculo V ".
 	"INNER JOIN MARCA M ON ( M.ID = V.FK_MARCA_ID )  ".
 	"INNER JOIN TIPO_VEICULO T ON ( T.ID = V.tipo_veiculo_id )  ".
 	"WHERE V.excluido <> 1 and V.USUARIO_ID = $usuarioID";
