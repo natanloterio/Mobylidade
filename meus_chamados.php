@@ -49,6 +49,7 @@ include_once ("connection.php");
         <div data-role="content" class="content"> 		   
 			<ul data-role="listview" data-theme="d">
 			  <?
+			  $dadosRota = array();
 			  $consulta=ExecSQL("SELECT * FROM chamados WHERE USUARIOS_ID='".$_COOKIE['USUARIO_ID']."'");
 			  while($dadosConsulta=mysql_fetch_array($consulta)){
 			    $consultaRota=ExecSQL("SELECT * FROM rota WHERE ID='".$dadosConsulta['ROTA_ID']."'");
