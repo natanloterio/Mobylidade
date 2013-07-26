@@ -91,3 +91,9 @@ $.themesDir = 'lib/';
 
 
     </style>
+<?
+$statusChamados[0]="Aguardando confirma&ccedil;&atilde;o da empresa.";
+$statusChamados[1]="Viagem confirmada, aguardando pagamento.";
+$statusChamados[2]="Pagamento confirmado, clique para visualizar os dados.";
+$statusChamados[3]="Pagamento rejeitado.";
+?>

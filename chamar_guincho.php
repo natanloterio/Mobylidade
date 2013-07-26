@@ -7,9 +7,16 @@
 
 <?php require_once('includes-basicos.php');?>
 
+
+<?
+include_once ("connection.php");
+if(isset($_GET['rota_id']))
+  ExecSQL("
+	INSERT INTO chamados(ROTA_ID,USUARIOS_ID,DATA,STATUS) VALUES(".$_GET['rota_id'].",".$_COOKIE['USUARIO_ID'].",NOW(),0)
+	");
+?>
 <script src="js/script da pagina.js"></script>
 <script>
- 
   $(document).ready(function(){
 	
 	$('.ui-icon-menu').on('click',function(){
@@ -56,7 +63,7 @@
 	      <center>
 		<div class="conteudoMensagem">
 		  Voce requisitou com sucesso o seu frete, por favor aguarde a confirmacao da empresa para efetuar o pagamento.<br><br>
-		  <a href="meus_chamados.php?chamado_id=" data-role="button" data-icon="forward" data-theme="a">Ir para meus pedidos</a>
+		  <a href="meus_chamados.php" data-role="button" data-icon="forward" data-theme="a">Ir para meus pedidos</a>
 		</div>
 	      </center>
 	</div>
