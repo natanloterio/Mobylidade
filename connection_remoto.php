@@ -10,7 +10,7 @@ class BancoDados
             die('Não foi possível conectar: ' . mysql_error()."<br><br>");
         }
         mysql_set_charset('utf8',$link);
-        $db_selected = mysql_select_db('mobylidade', $link);//##base
+        $db_selected = mysql_select_db('u586342328_moby', $link);//##base
         if (!$db_selected) {
             die ('Não foi possível selecionar : ' . mysql_error());
         }

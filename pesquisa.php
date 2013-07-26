@@ -95,6 +95,7 @@ function mostraBotaoEsquerdaHeader(){
   margin-right: 40px;
 
  }
+
  </style>
  <body>
 <!-- Inicio da pagina -->

@@ -72,7 +72,7 @@ switch($acao){
 function incluirRota($origemLat, $origemLng, $destinoLat, $destinoLng,$origem_cidade,$origem_uf,$destino_cidade, $destino_uf,$meu_veiculo, $xUsuarioID,$xValor){
 	$sucess = false;
 	
-	$sql = "INSERT INTO `ROTA` (`USUARIO_ID`, `ORIGEM_LAT`, `ORIGEM_LNG`, `DESTINO_LAT`, `DESTINO_LNG`, `ORIGEM_CIDADE`, `ORIGEM_UF`, `DESTINO_CIDADE`, `DESTINO_UF`, `VEICULO_ID`,`VALOR`) "
+	$sql = "INSERT INTO `rota` (`USUARIO_ID`, `ORIGEM_LAT`, `ORIGEM_LNG`, `DESTINO_LAT`, `DESTINO_LNG`, `ORIGEM_CIDADE`, `ORIGEM_UF`, `DESTINO_CIDADE`, `DESTINO_UF`, `VEICULO_ID`,`VALOR`) "
 			        ."VALUES ($xUsuarioID, $origemLat, $origemLng,   $destinoLat,   $destinoLng,  '$origem_cidade', '$origem_uf',  '$destino_cidade',  '$destino_uf',  $meu_veiculo,$xValor);";	
 	//echo $sql;
 	$sucess = ExecSQL($sql);
@@ -89,7 +89,7 @@ function alterarVeiculo($aID, $aIDMarca, $aPlaca, $aModelo){
 }
 
 function alterarParaExcluido($aID){
-	if(ExecSQL("UPDATE ROTA SET excluido = 1 WHERE id = $aID")){
+	if(ExecSQL("UPDATE rota SET excluido = 1 WHERE id = $aID")){
 		sucesso();
 	}else{
 		fracasso();
@@ -105,8 +105,8 @@ try {
 				."R.USUARIO_ID, "
 				."(CASE WHEN U.NOME_USUARIO IS NULL THEN 'sem nome' ELSE U.NOME_USUARIO END) AS NOME_USUARIO, "
 				."R.ORIGEM_CIDADE, "
-				."R.DESTINO_CIDADE FROM ROTA R "
-			        ."INNER JOIN USUARIOS U "
+				."R.DESTINO_CIDADE FROM rota R "
+			        ."INNER JOIN usuarios U "
 			        ."ON(R.USUARIO_ID = U.USUARIO_ID) "
 
 				."WHERE (UPPER(R.ORIGEM_CIDADE) LIKE UPPER('$origem_cidade')) "
@@ -132,7 +132,7 @@ try {
 	}else{
 		$xReturn['sucesso'] = 1;
 		$xReturn['msg'] = mysql_error();
-		$xReturn['sql'] = $sql;
+		//$xReturn['sql'] = $sql;
 	}
 	
 	return json_encode($xReturn);
@@ -155,8 +155,8 @@ try {
 				."(CASE WHEN U.NOME_USUARIO IS NULL THEN 'sem nome' ELSE U.NOME_USUARIO END) AS NOME_USUARIO, "
 				."R.ORIGEM_CIDADE, "
 				."R.VALOR, "
-				."R.DESTINO_CIDADE FROM ROTA R "
-			        ."LEFT JOIN USUARIOS U "
+				."R.DESTINO_CIDADE FROM rota R "
+			        ."LEFT JOIN usuarios U "
 			        ."ON(R.USUARIO_ID = U.USUARIO_ID) "
 				."WHERE R.USUARIO_ID = $uid "
 				."AND R.EXCLUIDO <> 1";
@@ -185,9 +185,9 @@ try {
 
 function definirRotaAtiva($rota_id){
  // redefine estatus das rotas deste usuario
- ExecSQL("UPDATE ROTA SET STATUS = 0 WHERE id <> $rota_id and USUARIO_ID = ".getUsuarioLogadoID());
+ ExecSQL("UPDATE rota SET STATUS = 0 WHERE id <> $rota_id and USUARIO_ID = ".getUsuarioLogadoID());
  // ativa a rota passada no parametro
- ExecSQL("UPDATE ROTA SET STATUS = 1 WHERE id = $rota_id and USUARIO_ID = ".getUsuarioLogadoID());
+ ExecSQL("UPDATE rota SET STATUS = 1 WHERE id = $rota_id and USUARIO_ID = ".getUsuarioLogadoID());
 
  sucesso();
 

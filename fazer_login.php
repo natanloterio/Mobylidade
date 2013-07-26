@@ -33,7 +33,7 @@ if(isset($_POST["usuario"]) && isset($_POST["senha"])){
 	//echo "logar($usuario,$senha);";
 	logar($usuario,$senha);
 }else{
-	fracasso(array("msg"=>"NENHUMA SENHA OU USUARIO FOI INFORMADO"));
+	//fracasso(array("msg"=>"NENHUMA SENHA OU USUARIO FOI INFORMADO"));
 }		
 
 ?>
