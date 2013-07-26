@@ -50,9 +50,9 @@ switch($acao){
 
 function incluirUsuario($aTipoPessoa, $aNomeCompleto, $aEmail, $aSexo, $aLogin, $aSenha, $aTelefone, $aEndereco, $aBairro, $aCidade, $aEstado){
 	//echo "teste";
-	//$consulta=ExecSQL("SELECT * FROM USUARIOS WHERE =''");
+	//$consulta=ExecSQL("SELECT * FROM usuarios WHERE =''");
 	
-	if( ExecSQL("INSERT INTO USUARIOS (tipo_pessoa, nome_usuario, email, sexo, login, senha, data_cadastro, telefone, endereco, bairro, cidade, estado) VALUES ('$aTipoPessoa', '$aNomeCompleto', '$aEmail', '$aSexo', '$aLogin', '$aSenha', now(), '$aTelefone', '$aEndereco', '$aBairro', '$aCidade', '$aEstado')")){
+	if( ExecSQL("INSERT INTO usuarios (tipo_pessoa, nome_usuario, email, sexo, login, senha, data_cadastro, telefone, endereco, bairro, cidade, estado) VALUES ('$aTipoPessoa', '$aNomeCompleto', '$aEmail', '$aSexo', '$aLogin', '$aSenha', now(), '$aTelefone', '$aEndereco', '$aBairro', '$aCidade', '$aEstado')")){
 		//sucesso();
 		//DIRECIONA PARA A PAGAGINA DE LOGIN USANDO POST
 		//echo "logar($aLogin,$aSenha)";
@@ -64,16 +64,16 @@ function incluirUsuario($aTipoPessoa, $aNomeCompleto, $aEmail, $aSexo, $aLogin, 
 }
 
 function alterarUsuario($aNomeCompleto, $aEmail, $aSexo, $aSenha, $aID){
-	return ExecSQL("UPDATE USUARIOS SET nome_usuario = $aNomeCompleto, email = $aEmail, sexo = $aSexo, senha = $aSenha WHERE id = $aID");
+	return ExecSQL("UPDATE usuarios SET nome_usuario = $aNomeCompleto, email = $aEmail, sexo = $aSexo, senha = $aSenha WHERE id = $aID");
 }
 
 function alterarParaExcluido($aID){
-	return ExecSQL("UPDATE USUARIOS SET excluido = 1 WHERE id = $aID");
+	return ExecSQL("UPDATE usuarios SET excluido = 1 WHERE id = $aID");
 }
 
 function consultarUsuario($aID){
 	$xReturn = array();
-	$xConsulta = ExecSQL("SELECT * FROM USUARIOS WHERE id = $aID");
+	$xConsulta = ExecSQL("SELECT * FROM usuarios WHERE id = $aID");
 	$xCursor = mysql_fetch_array($xConsulta);
 	$xCount =  mysql_numrows($xConsulta);
 	
