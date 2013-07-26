@@ -1,5 +1,5 @@
-<?php require_once('sessao.php');
-    
+<?php //require_once('sessao.php');
+  require_once('login_util.php');    
   $tipo_usuario = getUsuarioTipo();
 
 ?>
