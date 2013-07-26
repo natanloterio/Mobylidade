@@ -17,9 +17,10 @@ switch($acao){
 		$xSexo = $_POST['sexo'];
 		$xLogin = $_POST['login'];
 		$xSenha = $_POST['senha'];
+		$xTipoPessoa = $_POST['tipopessoa'];
 		
 		$xDataCadastro = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
-		incluirUsuario($xNomeCompleto, $xEmail, $xSexo, $xLogin, $xSenha, $xDataCadastro);
+		incluirUsuario($xTipoPessoa, $xNomeCompleto, $xEmail, $xSexo, $xLogin, $xSenha, $xDataCadastro);
 		break;
 
 	case 'alteracao':
@@ -45,9 +46,9 @@ switch($acao){
 	break;
 }
 
-function incluirUsuario($aNomeCompleto, $aEmail, $aSexo, $aLogin, $aSenha, $aDataCadastro){
+function incluirUsuario($aTipoPessoa, $aNomeCompleto, $aEmail, $aSexo, $aLogin, $aSenha, $aDataCadastro){
 	//echo "teste";
-	if( ExecSQL("INSERT INTO USUARIOS (nome_usuario, email, sexo, login, senha, data_cadastro) VALUES ('$aNomeCompleto', '$aEmail', '$aSexo', '$aLogin', '$aSenha', now())")){
+	if( ExecSQL("INSERT INTO USUARIOS (tipo_pessoa, nome_usuario, email, sexo, login, senha, data_cadastro) VALUES ('$aTipoPessoa', '$aNomeCompleto', '$aEmail', '$aSexo', '$aLogin', '$aSenha', now())")){
 		//sucesso();
 		//DIRECIONA PARA A PAGAGINA DE LOGIN USANDO POST
 		//echo "logar($aLogin,$aSenha)";

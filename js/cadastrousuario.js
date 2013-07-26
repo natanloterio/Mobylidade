@@ -1,4 +1,4 @@
-function cadastrarUsuario(aNomeCompleto, aEmail, aSexo, aLogin, aSenha){
+function cadastrarUsuario(aTipoPessoa, aNomeCompleto, aEmail, aSexo, aLogin, aSenha){
 	// coloca valores de login no form que irá chamar o login
 	$('#lusername').val(aLogin);
 	$('#lsenha').val(aSenha);
@@ -11,7 +11,8 @@ function cadastrarUsuario(aNomeCompleto, aEmail, aSexo, aLogin, aSenha){
 		"email": aEmail ,
 		"sexo": aSexo ,    
 		"login": aLogin ,    
-		"senha": aSenha            
+		"senha": aSenha,
+		"tipopessoa": aTipoPessoa
         };
     
 
@@ -19,7 +20,6 @@ $.post("usuario.php", dados);
 
 
 }
-
 $(document).ready(function(){
 	$('body').delegate('#_salvar_usuario_botao', 'click', function(){
 		var xNome = '';
@@ -27,12 +27,22 @@ $(document).ready(function(){
 		var xSexo = '';
 		var xLogin = '';
 		var xSenha = '';
+		var xTipoPessoa
 		
-		var selectedVal = "";
+		var selected = "";
 		var selected = $("input[type='radio'][name='sexo']:checked");
 		if (selected.length > 0)
-		    xSexo = selected.val();
+		    xSexo = selected.val()
+		else
+		    xSexo = 'N';
 		
+		selected = "";
+		selected = $("input[type='radio'][name='tipopessoa']:checked");
+		if (selected.length > 0)
+		   xTipoPessoa = selected.val()
+		else
+		   xTipoPessoa = 'P';
+
 		
 		if ( $('#name').val() )   
 			xNome = $('#name').val();
@@ -45,8 +55,20 @@ $(document).ready(function(){
 		if ( $('#senha').val() )
 			xSenha = $('#senha').val();
 
-		cadastrarUsuario(xNome, xEmail, xSexo, xLogin, xSenha);
+		cadastrarUsuario(xTipoPessoa, xNome, xEmail, xSexo, xLogin, xSenha);
 	});
+	
+	$(".tipopessoa").bind( "change", function(event, ui) {
+		var selected = "";
+		var selected = $("input[type='radio'][name='tipopessoa']:checked");
+		if (selected.length > 0)
+		    xTipoPessoa = selected.val();
+		if (xTipoPessoa == 'E')
+			$(".sexo").hide()
+		else
+			$(".sexo").show();
+	});
+	
 	
 });
 
