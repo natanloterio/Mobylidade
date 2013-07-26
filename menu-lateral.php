@@ -1,4 +1,8 @@
-<?php require_once('sessao.php'); ?>
+<?php require_once('sessao.php');
+    
+  $tipo_usuario = getUsuarioTipo();
+
+?>
 	 <!-- Menu lateral esquerda-->
 		<script>
 			
@@ -52,13 +56,23 @@
 				<br>
 				<br>
 				<ul data-role="listview" data-theme="a">
-					<li><a href="inicio.php" rel="external">Inicio</a></li>				
-					<li><a href="pesquisa.php" rel="external">Procurar Veiculos</a></li>
+					
+					<?php if($tipo_usuario == 'E') {?>
+					
 					<li><a href="meus_veiculos.php" rel="external">Meus Veiculos</a></li>
 					<li><a href="minhas_rotas.php" rel="external">Minhas Rotas</a></li>
+					
+					<?php }else{?>
+					
+					<li><a href="pesquisa.php" rel="external">Inicio</a></li>
+					<li><a href="meus_chamados.php" rel="external">Meus Chamados</a></li>
+					
+					<?php }?>
+					
 					<li><a href="#" rel="external">Chat</a></li>
 					<li><a href="logout.php" rel="external">Sair</a></li>
-				</ul>			
+				</ul>
+				
 			
 			</div>
 		</div>
