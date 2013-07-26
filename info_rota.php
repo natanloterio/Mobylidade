@@ -29,7 +29,7 @@ function getRotaID(){
   R.valor,
   R.DESTINO_LNG,  
   concat(R.ORIGEM_CIDADE ,'/',R.ORIGEM_UF) as ORIGEM, 
-  concat(R.DESTINO_CIDADE ,'/',R.DESTINO_UF) as DESTINO from ROTA R, USUARIOS U
+  concat(R.DESTINO_CIDADE ,'/',R.DESTINO_UF) as DESTINO from rota R, usuarios U
   where R.USUARIO_ID = U.USUARIO_ID
   AND R.excluido = 0
   AND R.ID = $rotaID";
