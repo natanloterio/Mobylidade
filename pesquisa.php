@@ -95,6 +95,15 @@ function mostraBotaoEsquerdaHeader(){
   margin-right: 40px;
 
  }
+ 
+ .no_record_found{
+  border-radius: 20px;
+  background-color: #ffb9b9;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 18px;
+ }
  </style>
  <body>
 <!-- Inicio da pagina -->

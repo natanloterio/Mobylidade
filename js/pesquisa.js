@@ -21,21 +21,25 @@
 		success: function(x){
 			
 			if (x.sucesso === 1) {
-                           var html_linhas = '';
-                           // insere os resultados na lista detro de resultado_buca
-                           var total_linhas = x.linhas.length;
-                           for (i = 0; i < total_linhas; i++) {
+                           
+                           if(x.linhas.length > 0){   
+                              var html_linhas = '';
+                              // insere os resultados na lista detro de resultado_buca
+                              var total_linhas = x.linhas.length;
+                              for (i = 0; i < total_linhas; i++) {
+                                 
+                                 html_linhas += " <li><a href=\"info_rota.php?rota_id="+x.linhas[i].ROTA_ID+"\" rel=\"external\">"+x.linhas[i].NOME_USUARIO+"</a></li>\n";
+                                 
+                              }
                               
-                              html_linhas += " <li><a href=\"info_rota.php?rota_id="+x.linhas[i].ROTA_ID+"\" rel=\"external\">"+x.linhas[i].NOME_USUARIO+"</a></li>\n";
+                              // move os campos de busca para o topo da lista de resultados
+                              $('.info_busca').hide(1000);
                               
+                              $('#lista_resultado_busca').html(html_linhas);
+                              $('#lista_resultado_busca').listview('refresh');
+                           }else{
+                              $('#lista_resultado_busca').html('<div class="no_record_found">Nenhuma rota encontrada</div>');
                            }
-                           
-                           // move os campos de busca para o topo da lista de resultados
-                           $('.info_busca').hide(1000);
-                           
-                           $('#lista_resultado_busca').html(html_linhas);
-                           $('#lista_resultado_busca').listview('refresh');
-                           
                            
                         } else {
                            //alert('não cadastrou');
