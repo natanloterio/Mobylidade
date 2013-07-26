@@ -31,7 +31,7 @@ function logar($usuario,$senha){
 				
 				$host  = $_SERVER['HTTP_HOST'];
 				$uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-				$extra = 'inicio.php';
+				$extra = 'pesquisa.php';
 				$header = "Location: http://$host$uri/$extra";
 				//echo "redirecionando para $header";
 				header($header);
