@@ -68,15 +68,10 @@ header('Content-type: text/html');
 	<!-- Inicio conteudo da pagina -->
 	<div data-role="content" class="content">
 
-		<a class="pesquisa_lugar_btn" id="origem_buton" href="#" data-role="button" data-theme="a"><div id="label_btn_origem">Origem</div></a>
-                <div class="origem_erro"> Campo requerido</div>
-
-		<a class="pesquisa_lugar_btn" id="destino_buton" href="#" data-role="button" data-theme="a"><div id="label_btn_destino">Destino</div></a>
-		<div class="destino_erro"> Campo requerido</div>
+	        <input id="origem_criteria" type="text" placeholder="Cidade de Origem" size="90" />
+	        <input id="destino_criteria" type="text" placeholder="Cidade de Destino " size="90" />
 		
 		<div data-role="fieldcontain">
-		  
-		  
        
 		 
 		 <?php
