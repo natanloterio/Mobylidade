@@ -7,7 +7,7 @@ require_once('json_util.php');
 //header('Content-type: application/json');
 
 function logar($usuario,$senha){
-		$sql = "select USUARIO_ID,NOME_USUARIO AS USUARIO_NOME, login from USUARIOS where login like '$usuario' and senha like '$senha';";
+		$sql = "select USUARIO_ID,NOME_USUARIO AS USUARIO_NOME, login from usuarios where login like '$usuario' and senha like '$senha';";
 		
 		$result = ExecSQL($sql);
 		//echo "tem result:".$result;
