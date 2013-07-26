@@ -1,61 +1,73 @@
-function cadastrarUsuario(aTipoPessoa, aNomeCompleto, aEmail, aSexo, aLogin, aSenha){
-	// coloca valores de login no form que irá chamar o login
-	$('#lusername').val(aLogin);
-	$('#lsenha').val(aSenha);
-	
-	
-	
-	var dados = {    
-		'acao' : 'inclusao',
-		"nome_usuario": aNomeCompleto  ,
-		"email": aEmail ,
-		"sexo": aSexo ,    
-		"login": aLogin ,    
-		"senha": aSenha,
-		"tipopessoa": aTipoPessoa
-        };
-    
 
-$.post("usuario.php", dados);
-
-
-}
 $(document).ready(function(){
-	$('body').delegate('#_salvar_usuario_botao', 'click', function(){
-		var xNome = '';
-		var xEmail = '';
-		var xSexo = '';
-		var xLogin = '';
-		var xSenha = '';
-		var xTipoPessoa
-		
-		var selected = "";
-		var selected = $("input[type='radio'][name='sexo']:checked");
+	$('body').delegate('#salvar_usuario_botao', 'click', function(){
+		//Verifica›es de formulario
+		var erro = false;
+		var mensagemErro="";
+		if ($("#nome").val()=="") {
+			mensagemErro+="Preencha o nome corretamente\n";
+			erro=true;
+		}
+		if ($("#email").val()=="") {
+			mensagemErro+="Preencha o e-mail corretamente\n";
+			erro=true;
+		}
+		if ($("#telefone").val()=="") {
+			mensagemErro+="Preencha o telefone corretamente\n";
+			erro=true;
+		}
+		var selected = $("input[type='radio'][name='tipopessoa']:checked");
 		if (selected.length > 0)
-		    xSexo = selected.val()
-		else
-		    xSexo = 'N';
-		
-		selected = "";
-		selected = $("input[type='radio'][name='tipopessoa']:checked");
-		if (selected.length > 0)
-		   xTipoPessoa = selected.val()
-		else
-		   xTipoPessoa = 'P';
-
-		
-		if ( $('#name').val() )   
-			xNome = $('#name').val();
-		if ( $('#email').val() )
-			xEmail = $('#email').val();
-		//if ( $('#sexo').val() )
-		//	 = $('#chk_homem').val();
-		if ( $('#login').val() )
-			xLogin = $('#login').val();
-		if ( $('#senha').val() )
-			xSenha = $('#senha').val();
-
-		cadastrarUsuario(xTipoPessoa, xNome, xEmail, xSexo, xLogin, xSenha);
+		    xTipoPessoa = selected.val();
+		if (xTipoPessoa == 'E') {
+			if ($("#endereco").val()=="") {
+				mensagemErro+="Preencha o endereco corretamente\n";
+				erro=true;
+			}
+			if ($("#bairro").val()=="") {
+				mensagemErro+="Preencha o bairro corretamente\n";
+				erro=true;
+			}
+			if ($("#cidade").val()=="") {
+				mensagemErro+="Preencha a cidade corretamente\n";
+				erro=true;
+			}
+			if ($("#estado").val()=="") {
+				mensagemErro+="Preencha o estado corretamente\n";
+				erro=true;
+			}
+		}else{
+			if ($("input[type='radio'][name='sexo']:checked").length==0) {
+				mensagemErro+="Selecione o seu sexo\n";
+				erro=true;
+			}
+		}
+		if ($("#login").val()=="") {
+			mensagemErro+="Preencha o login corretamente\n";
+			erro=true;
+		}
+		if ($("#senha").val()=="") {
+			mensagemErro+="Preencha a senha corretamente\n";
+			erro=true;
+		}
+		if (erro) {
+			alert(mensagemErro);
+			return false;
+		}
+		var dados = $("#formCadastro").serialize();
+		$.ajax({
+			url: 'usuario.php',
+			type: 'POST',
+			data: dados,
+			success: function(dados){
+				$("#mensagemExibe").html(dados);
+				window.location='pesquisa.php';
+			},
+			error: function(){
+				alert('Ocorreu um erro!');
+			}
+			});
+		//$.post("usuario.php", dados);
 	});
 	
 	$(".tipopessoa").bind( "change", function(event, ui) {
@@ -63,10 +75,13 @@ $(document).ready(function(){
 		var selected = $("input[type='radio'][name='tipopessoa']:checked");
 		if (selected.length > 0)
 		    xTipoPessoa = selected.val();
-		if (xTipoPessoa == 'E')
-			$(".sexo").hide()
-		else
+		if (xTipoPessoa == 'E'){
+			$(".sexo").hide();
+			$(".endereco").show();
+		}else{
 			$(".sexo").show();
+			$(".endereco").hide();
+		}
 	});
 	
 	

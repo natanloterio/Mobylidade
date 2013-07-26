@@ -1,10 +1,6 @@
 <?php
-class BancoDados
-{
-    static private $instance;
-   
-    private function __construct() 
-    {
+
+
         $link = mysql_connect('192.168.1.4', 'root', 'root123'); //##dbconn
         if (!$link) {
             die('Não foi possível conectar: ' . mysql_error()."<br><br>");
@@ -14,19 +10,12 @@ class BancoDados
         if (!$db_selected) {
             die ('Não foi possível selecionar : ' . mysql_error());
         }
-    }
     
-    static public function getInstance() 
-    {
-        if (!isset(self::$instance)) {
-            $c = __CLASS__;
-            self::$instance = new $c;
-        }
     
-        return self::$instance;
-    }
-   
-    public function ExecSQL($sql)
+    
+    
+    
+     function ExecSQL($sql)
     {
         $result = mysql_query($sql);
         if (!$result) {
@@ -34,10 +23,7 @@ class BancoDados
         }
 		return $result;
     }
-}
-    function ExecSQL($sql)
-	   {
-		     return BancoDados::getInstance()->ExecSQL($sql);
-    }
+
+
 	
 ?>

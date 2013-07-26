@@ -19,6 +19,7 @@
 
  });
 </script>
+
 </head>    
 <body>
 <!-- Inicio da pagina -->
@@ -33,13 +34,14 @@
 	<!-- Inicio conteudo da pagina -->
 	<div data-role="content" class="content">
 	 
-		<form action="usuario.php" method="post" data-ajax="false">
+		<form action="usuario.php" method="post" data-ajax="false" id="formCadastro">
+		 <input type="hidden" name="acao" value="inclusao">
 			<div data-role="fieldcontain">
 				<fieldset data-role="controlgroup" data-mini="true">
+					<input type="radio" class="tipopessoa" name="tipopessoa" checked id="chk_pessoa" value="P"/>
+					<label for="chk_pessoa">Pessoa</label>
 					<input type="radio" class="tipopessoa" name="tipopessoa" id="chk_empresa"  value="E"/>
 					<label for="chk_empresa">Empresa</label>
-					<input type="radio" class="tipopessoa" name="tipopessoa" id="chk_pessoa" value="P"/>
-					<label for="chk_pessoa">Pessoa</label>
 				</fieldset>
 			</div>
 
@@ -55,23 +57,30 @@
 					<label for="chk_mulher">Mulher</label>
 				</fieldset>
 			</div>
+			<label for="telefone">Telefone</label>
+			<input type="text" id="telefone" name="telefone">
+			<div class="endereco" style="display:none;">
+				<label for="endereco">Endere&ccedil;o</label>
+				<input type="text" id="endereco" name="endereco">
+				 <label for="bairro">Bairro</label>
+				<input type="text" id="bairro" name="bairro">
+				 <label for="cidade">Cidade</label>
+				<input type="text" id="cidade" name="cidade">
+				 <label for="estado">Estado</label>
+				<input type="text" id="estado" size="2" maxlength="2" name="estado">
+			</div>
 			<label for="login">Login</label>
 			<input type="text" id="login" name="login">
 			<label for="senha">Senha</label>
 			<input type="password" id="senha" name="senha">
 			<input type="hidden" name="acao" value="inclusao"/>
-			<input type="submit" id="salvar_usuario_botao" data-role="button" data-icon="check" value="Pronto"/>
+			<input type="button" id="salvar_usuario_botao" data-role="button" data-icon="check" value="Pronto"/>
 		</form>
 	</div>
+	<div id="mensagemExibe" style="display:none;">
+	 
+	</div>
 	<!-- Fim conteudo da pagina -->
-</div>
-
-<!-- Fim da pagina-->
-<div class="invisivel">
-	<form id="frmlogin" action="fazer_login.php" method="post">
-		<input type="hidden" name="lsenha" id="lsenha" value=""/>
-		<input type="hidden" name="lusername" id="lusername" value=""/>
-	</form>
 </div>
 </body>
 

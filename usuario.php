@@ -1,5 +1,4 @@
 <?php
-include_once (dirname(__FILE__) . "/connection.php");
 require_once  ('json_util.php');
 require_once('login.php');
 
@@ -18,9 +17,12 @@ switch($acao){
 		$xLogin = $_POST['login'];
 		$xSenha = $_POST['senha'];
 		$xTipoPessoa = $_POST['tipopessoa'];
-		
-		$xDataCadastro = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
-		incluirUsuario($xTipoPessoa, $xNomeCompleto, $xEmail, $xSexo, $xLogin, $xSenha, $xDataCadastro);
+		$xTelefone = $_POST['telefone'];
+		$xEndereco = $_POST['endereco'];
+		$xBairro = $_POST['bairro'];
+		$xCidade = $_POST['cidade'];
+		$xEstado = $_POST['estado'];
+		incluirUsuario($xTipoPessoa, $xNomeCompleto, $xEmail, $xSexo, $xLogin, $xSenha, $xTelefone, $xEndereco, $xBairro, $xCidade, $xEstado);
 		break;
 
 	case 'alteracao':
@@ -46,9 +48,11 @@ switch($acao){
 	break;
 }
 
-function incluirUsuario($aTipoPessoa, $aNomeCompleto, $aEmail, $aSexo, $aLogin, $aSenha, $aDataCadastro){
+function incluirUsuario($aTipoPessoa, $aNomeCompleto, $aEmail, $aSexo, $aLogin, $aSenha, $aTelefone, $aEndereco, $aBairro, $aCidade, $aEstado){
 	//echo "teste";
-	if( ExecSQL("INSERT INTO USUARIOS (tipo_pessoa, nome_usuario, email, sexo, login, senha, data_cadastro) VALUES ('$aTipoPessoa', '$aNomeCompleto', '$aEmail', '$aSexo', '$aLogin', '$aSenha', now())")){
+	//$consulta=ExecSQL("SELECT * FROM USUARIOS WHERE =''");
+	
+	if( ExecSQL("INSERT INTO USUARIOS (tipo_pessoa, nome_usuario, email, sexo, login, senha, data_cadastro, telefone, endereco, bairro, cidade, estado) VALUES ('$aTipoPessoa', '$aNomeCompleto', '$aEmail', '$aSexo', '$aLogin', '$aSenha', now(), '$aTelefone', '$aEndereco', '$aBairro', '$aCidade', '$aEstado')")){
 		//sucesso();
 		//DIRECIONA PARA A PAGAGINA DE LOGIN USANDO POST
 		//echo "logar($aLogin,$aSenha)";
