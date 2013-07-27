@@ -3,6 +3,7 @@
 include_once ("connection.php");
 
 $nomePessoa = getPessoaNome();
+$profileID = getPessoaID(); 
 
 
 function getPessoaID(){
@@ -103,10 +104,12 @@ function getPessoaNome(){
 	 <div class="imagem_perfil">
 	  
 	 </div>
-	 <form action="enviar_msg.php" method="post">
-	  <label for="texto_a_enviar">Mensagem	</label>
-	  <textarea id="texto_a_enviar" rows="3" cols="30">
-	   
+	 <form action="mensagens.php" method="post">
+	  <label for="texto_a_enviar">Mensagem</label>
+	  <input type="hidden" name="acao" value="enviarmensagem" >
+	  <input type="hidden" name="sender" value="<?php echo getUsuarioLogadoID(); ?>" >
+	  <input type="hidden" name="receiver" value="<?php echo $profileID; ?>">
+	  <textarea name="mensagem" id="texto_a_enviar" rows="3" cols="30">	   
 	  </textarea>
 	  <input type="submit" value="Enviar"/>
 	  

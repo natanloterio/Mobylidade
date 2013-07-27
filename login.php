@@ -41,6 +41,7 @@ function logar($usuario,$senha){
 				  $header = "Location: http://$host$uri/$extra";
 				//echo "redirecionando para $header";
 				header($header);
+				setURLRedirect('-1');
 				exit;
 				
 			}else{
