@@ -50,8 +50,9 @@ switch($acao){
 
 function incluirUsuario($aTipoPessoa, $aNomeCompleto, $aEmail, $aSexo, $aLogin, $aSenha, $aTelefone, $aEndereco, $aBairro, $aCidade, $aEstado){
 	//echo "teste";
-	//$consulta=ExecSQL("SELECT * FROM usuarios WHERE =''");
-	
+	$consulta=ExecSQL("SELECT * FROM usuarios WHERE login='$aLogin'");
+	if(mysql_num_rows($consulta)>0) die("<script>alert('OCORREU UM ERRO! Esse login ja existe no nosso banco de dados!'); history.go(-1); </script>");
+ 	
 	if( ExecSQL("INSERT INTO usuarios (tipo_pessoa, nome_usuario, email, sexo, login, senha, data_cadastro, telefone, endereco, bairro, cidade, estado) VALUES ('$aTipoPessoa', '$aNomeCompleto', '$aEmail', '$aSexo', '$aLogin', '$aSenha', now(), '$aTelefone', '$aEndereco', '$aBairro', '$aCidade', '$aEstado')")){
 		//sucesso();
 		//DIRECIONA PARA A PAGAGINA DE LOGIN USANDO POST
