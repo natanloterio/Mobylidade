@@ -96,4 +96,9 @@ $statusChamados[0]="Aguardando confirma&ccedil;&atilde;o da empresa.";
 $statusChamados[1]="Viagem confirmada, aguardando pagamento.";
 $statusChamados[2]="Pagamento confirmado, clique para visualizar os dados.";
 $statusChamados[3]="Pagamento rejeitado.";
+
+$statusChamadosEmpresa[0]="Aguardando sua confirma&ccedil;&atilde;o.";
+$statusChamadosEmpresa[1]="Viagem confirmada, aguardando pagamento do cliente.";
+$statusChamadosEmpresa[2]="Pagamento confirmado, clique para visualizar os dados do cliente.";
+$statusChamadosEmpresa[3]="Pagamento rejeitado (o cliente pode tentar pagar novamente).";
 ?>

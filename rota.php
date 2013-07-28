@@ -1,5 +1,5 @@
 <?php
-include_once (dirname(__FILE__) . "/connection.php");
+
 include_once  ('login_util.php');
 include_once('json_util.php');
 
