@@ -170,7 +170,6 @@ function calcRoute() {
       <div id="page_nomedapagina" data-role="page" >
 	
 	<!-- Menu lateral esquerda-->
-	<?php //include('menu-lateral.php'); ?>
 	<!-- /panel -->		
 	  
 
@@ -184,16 +183,14 @@ function calcRoute() {
     
 	<!-- Inicio conteudo da pagina -->  
         <div data-role="content"  class="content"> 		   
-	 
-	 <?
-	 if(getUsuarioLogadoID() == -1){
+	 <? if(getUsuarioLogadoID() == -1){
 	    $xLabel = 'Login';
 	    $xURl = 'fazer_login.php';
-	    setURLRedirect($_SERVER ['REQUEST_URI']);
+	    //setURLRedirect($_SERVER ['REQUEST_URI']);
 	  }else{
 	    $xLabel = 'Chamar';
 	    $xURl = "chamar_guincho.php?rota_id=$rotaID";
-	    setURLRedirect('-1');
+	    //setURLRedirect('-1');
 	  }
 	 ?>
 	  <div class="info_rota">
