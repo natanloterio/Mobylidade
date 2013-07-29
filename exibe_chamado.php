@@ -74,6 +74,9 @@ include_once ("connection.php");
 	      echo "Por algum motivo o seu pagamento foi rejeitado.<br><br>
 	      <a data-icon='info' data-role='button' data-theme='d'>Clique aqui para efetuar o pagamento</a>
 	      ";
+	    }elseif($dadosInfos['STATUS']==4){
+	      echo "A empresa rejeitou o seu chamado.<br><br><a data-rel=\"back\" data-icon=\"back\" data-role=\"button\" data-theme=\"d\">Voltar</a>
+	      ";
 	    }
 	    ?>
 	    
