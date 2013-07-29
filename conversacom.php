@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html lang="en-US">
     
@@ -9,12 +10,23 @@
 require_once('includes-basicos.php');
 include_once ("connection.php");
 include_once ("login_util.php");
+
+function getPessoaID(){
+  if(isset($_GET['u'])){
+	  return intval($_GET['u']);
+  }else{
+	  return -1;
+  }
+}
+
+
+$profileID = getPessoaID(); 
+
 ?>
 
 <script src="js/jquery.timeago.js" type="text/javascript"></script>
-<script src="js/conversa.js" type="text/javascript"></script>
 <script src="js/Placeholders.js"></script>
-
+<script src="js/conversacom.js"></script>
 <script>
  
   $(document).ready(function(){
@@ -52,7 +64,7 @@ include_once ("login_util.php");
     
 	<!-- Inicio conteudo da pagina -->  
         <div data-role="content" class="content"> 		   
-			<ul data-role="listview" data-theme="d">
+			<ul id="ULMenesagens" data-role="listview" data-theme="d">
                         <?
                             $_POST['acao'] = 'getmessages';
                             $_POST['u'] = $_GET['u'];
@@ -68,17 +80,19 @@ include_once ("login_util.php");
                             //echo $mensagem['mensagem'];
                             
                         ?>
-                            <li>
-                                <p><? echo $mensagem['nome']; ?> enviou <span class="date" title="<?  echo $mensagem['data']; ?>"></span> <p>
-                                <h1><? echo $mensagem['mensagem']; ?><h1>
+                            <li class="LIMensagens">
+                                <p class="PMensagens"><? echo $mensagem['nome']; ?> enviou <span class="date" title="<?  echo $mensagem['data']; ?>"></span> <p>
+                                <h1 class="H1Mensagens"><? echo $mensagem['mensagem']; ?><h1>
                             </li>
                         <?
                             }
                         ?>
-                            <div>
+			</ul>
+                            <div style="margin-top: 30px;">
                                 <input type="text" style="height: 50px;" placeholder="Escreva sua mensagem..." name="mensagem" id="texto_a_enviar">	   
                                 </input>
-                                <input type="submit" value="Enviar"/>
+				<input type="hidden" id="receiver" value="<?php echo $profileID; ?>">
+                                <input id="sendmessage" type="submit" value="Enviar"/>
                             </div>
                                 
 

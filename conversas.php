@@ -58,9 +58,10 @@ include_once ("login_util.php");
                             include'mensagens.php';
                             $xConteudo = ob_get_contents();
                             ob_end_clean();
-                            
+                            echo(getUsuarioLogadoID());
                             $xArrayConteudo = json_decode($xConteudo, true);
-                            foreach ($xArrayConteudo['messages'] as $mensagem){
+                            if (is_array($xArrayConteudo['messages']))
+			    foreach ($xArrayConteudo['messages'] as $mensagem){
                                 ?>
                                     <li>
                                         <a href="conversacom.php?u=<? echo $mensagem['sender']; ?>">

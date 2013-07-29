@@ -78,7 +78,7 @@
 					
 					<?php }?>
 					
-					<li><a href="#" rel="external">Chat</a></li>
+					<li><a href="conversas.php" rel="external">Chat</a></li>
 					<li><a href="logout.php" rel="external">Sair</a></li>
 				</ul>
 				

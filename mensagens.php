@@ -9,7 +9,7 @@ $acao = strip_tags($_POST['acao']);
 switch($acao){
     case 'enviarmensagem':
         $xMensagem = strip_tags($_POST['mensagem']);
-        $xUsuarioSender = $_POST['sender'];
+        $xUsuarioSender = getUsuarioLogadoID();
         $xUsuarioReceiver = $_POST['receiver'];
         echo enviarMensagem($xUsuarioSender, $xUsuarioReceiver, $xMensagem);
         break;
@@ -70,6 +70,10 @@ function getMessagesUsToUs($aUserA, $aUserB){
     }
     
     return json_encode($xMessages);
+}
+
+function getConversas(){
+    
 }
 
 function getCountMessagesNotRead($aUserID){
