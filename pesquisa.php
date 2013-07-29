@@ -28,7 +28,7 @@ function mostraBotaoEsquerdaHeader(){
  if($usuarioLogadoID > 0){
   ?>
   
-  <a class="ui-icon-menu" href="#" data-role="button" data-icon="grid" data-theme="a">Menu</a>
+  <a class="ui-icon-menu" href="#" data-role="button" data-icon="home" data-theme="a">Menu</a>
   
   <?php
  }else{
@@ -94,6 +94,11 @@ function mostraBotaoEsquerdaHeader(){
   margin-top: 10px;
   margin-right: 40px;
 
+ }
+ 
+ .div_valor{
+  float: right;
+  display: inline-table;
  }
 
  </style>

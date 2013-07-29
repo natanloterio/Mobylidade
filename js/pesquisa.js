@@ -42,7 +42,7 @@
                               var total_linhas = x.linhas.length;
                               for (i = 0; i < total_linhas; i++) {
                                  
-                                 html_linhas += " <li><a href=\"info_rota.php?rota_id="+x.linhas[i].ROTA_ID+"\" rel=\"external\">"+x.linhas[i].NOME_USUARIO+"</a></li>\n";
+                                 html_linhas += " <li data-theme='d'><a href=\"info_rota.php?rota_id="+x.linhas[i].ROTA_ID+"\" rel=\"external\">"+x.linhas[i].NOME_USUARIO+"<div class='div_valor'>"+x.linhas[i].VALOR+"</div></a></li>\n";
                                  
                               }
                               

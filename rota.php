@@ -105,7 +105,9 @@ try {
 				."R.USUARIO_ID, "
 				."(CASE WHEN U.NOME_USUARIO IS NULL THEN 'sem nome' ELSE U.NOME_USUARIO END) AS NOME_USUARIO, "
 				."R.ORIGEM_CIDADE, "
-				."R.DESTINO_CIDADE FROM rota R "
+				."R.DESTINO_CIDADE, "
+				."R.VALOR "
+				."FROM rota R "
 			        ."INNER JOIN usuarios U "
 			        ."ON(R.USUARIO_ID = U.USUARIO_ID) "
 
@@ -123,6 +125,7 @@ try {
 			$linha['NOME_USUARIO'] = $row['NOME_USUARIO'];
 			$linha['ORIGEM_CIDADE'] = $row['ORIGEM_CIDADE'];
 			$linha['DESTINO_CIDADE'] = $row['DESTINO_CIDADE'];
+			$linha['VALOR'] = $row['VALOR'];
 			
 			
 			array_push($linhas,$linha);	
