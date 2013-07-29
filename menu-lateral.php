@@ -5,7 +5,15 @@
 ?>
 	 <!-- Menu lateral esquerda-->
 		<script>
+		
+		  $('.nome_e_imagem').on('click',function(){
+		
+		    window.local ='perfil.php?uid=<?php echo getUsuarioLogadoID();?>';
 			
+			
+		   });
+			
+		  
 		</script>
 		
 
@@ -33,6 +41,7 @@
 			
 			.nome_e_imagem{
 				float: left;
+				cursor: pointer;
 			}
 			
 		</style>

@@ -56,7 +56,8 @@ error_reporting(0);
 						<h1 id="titulo_popup_rota">Rota</h1>
 					</div>
 					<div data-role="content" data-theme="d" class="ui-corner-bottom ui-content">
-					        <a href="#" id="btn_ativar_rota" data-role="button" data-inline="true" >Rota Atual</a>
+					        <a href="#" id="btn_ativar_rota" data-role="button" data-inline="true" >Ativar</a>
+						<a href="#" id="btn_desativar_rota" data-role="button" data-inline="true" >Desativar</a>
 						<a href="#" id="btn_exclui_rota" data-role="button" data-inline="true" >Excluir</a>
 						
 						<input type="hidden" id="id_rota_popup" value="0"/>

@@ -58,7 +58,31 @@ $( document ).delegate("#page_minhas_rotas", "pageinit", function() {
 			}
 	});
 		
-  });	
+  });
+  
+
+  $('#btn_desativar_rota').on('click',function(){
+	var id_rota_ativar = $('#id_rota_popup').val();
+	$.ajax({
+		    url : 'rota.php',
+		    type : 'post',
+		    dataType: 'json',
+		    data : {acao : 'definir_rota_ativa',
+					id:id_rota_ativar
+			},
+			success: function(x){
+				if (x.sucesso > 0) {
+					//("inicio.php");
+					window.location = 'minhas_rotas.php';
+				}
+				
+			},
+			error : function(x) {
+				alert('Não foi possível cadastrar este usuário.');
+			}
+	});
+		
+  });  
 	
 });
 
