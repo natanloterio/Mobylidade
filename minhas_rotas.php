@@ -33,7 +33,8 @@ error_reporting(0);
 
     <body>
   <!-- Inicio da pagina -->
-	<div id="page_minhas_rotas" data-role="page" >
+	<div id="pagina" data-role="page" >
+	<!--<div id="page_minhas_rotas" data-role="page" >-->
 	
 	<!-- Menu lateral esquerda-->
 	<?php include('menu-lateral.php'); ?>

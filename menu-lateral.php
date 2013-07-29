@@ -3,7 +3,7 @@
   $tipo_usuario = getUsuarioTipo();
 
 ?>
-	 <!-- Menu lateral esquerda-->
+	 
 		<script>
 		
 		  $('.nome_e_imagem').on('click',function(){
@@ -72,13 +72,19 @@
 					<li><a href="minhas_rotas.php" rel="external">Minhas Rotas</a></li>
 					
 					<?php }else{?>
-					
+
 					<li><a href="pesquisa.php" rel="external">Inicio</a></li>
 					<li><a href="meus_chamados.php" rel="external">Meus Chamados</a></li>
 					
 					<?php }?>
 					
-					<li><a href="conversas.php" rel="external">Chat</a></li>
+					<li>
+					    <a href="conversas.php" rel="external">Chat
+					      <input type="hidden" id="usLogged" value="<?php echo getUsuarioLogadoID();?>" />
+					      <div class="NumberNewMessages"></div>
+					    </a>
+				       
+					</li>
 					<li><a href="logout.php" rel="external">Sair</a></li>
 				</ul>
 				

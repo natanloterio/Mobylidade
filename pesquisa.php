@@ -104,7 +104,8 @@ function mostraBotaoEsquerdaHeader(){
  </style>
  <body>
 <!-- Inicio da pagina -->
-<div id="page_pesquisa" data-role="page">
+
+<div id="pagina" data-role="page" >
 	<!-- Menu lateral esquerda-->
 	<?php include('menu-lateral.php'); ?>
 	<!-- /panel --> 

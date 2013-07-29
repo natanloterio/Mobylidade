@@ -130,8 +130,9 @@ border: 0px ;
   <body>
 
 	  
+      <div id="pagina" data-role="page" >
 
- <div data-role="page" id="chatPage" data-role="page" data-theme="a">
+ <!--<div data-role="page" id="chatPage" data-role="page" data-theme="a">-->
   <!-- Menu lateral esquerda-->
   <!-- /panel -->
   <!-- Inicio cabecalho da pagina -->

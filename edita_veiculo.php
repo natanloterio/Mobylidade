@@ -24,7 +24,9 @@ require_once('connection.php');
 </head> <body>
 
 
-<!-- Home --> <div data-role="page" id="page1">
+<!-- Home -->
+<div id="pagina" data-role="page" >
+<!--<div data-role="page" id="page1">-->
       
 <!-- Menu lateral esquerda-->
 <?php include('menu-lateral.php'); ?>

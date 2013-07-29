@@ -111,3 +111,14 @@ span .menu-icon {
   font-size: 18px;
   margin: 5px;
  }
+ 
+.NumberNewMessages{
+    display: inline;
+    float: right;
+    background: url(../image/balao-notificacao.png) top right no-repeat;
+    height: 22px;
+    width: 28px;
+    background-size: 100%;
+    text-align: center;
+    padding-top: 2px;
+}

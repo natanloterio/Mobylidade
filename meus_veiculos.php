@@ -32,7 +32,8 @@ header('Content-type: text/html');
 
     <body>
   <!-- Inicio da pagina -->
-	<div id="page_meus_veiculos" data-role="page" >
+	<div id="pagina" data-role="page" >
+	<!--<div id="page_meus_veiculos" data-role="page" >-->
 	
 	<!-- Menu lateral esquerda-->
 	<?php include('menu-lateral.php'); ?>

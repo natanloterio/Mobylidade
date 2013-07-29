@@ -13,32 +13,17 @@ include_once ("login_util.php");
 <script src="js/jquery.timeago.js" type="text/javascript"></script>
 <script src="js/conversa.js" type="text/javascript"></script>
 <script>
- 
-  $(document).ready(function(){
-	
-	$('.ui-icon-menu').on('click',function(){
-			
-			$( "#menu_panel" ).panel( "open" );
-	
-	});
-	
-	
-	
-  
-  });
 </script>
 </head>    
 
   <body>
    
       <!-- Inicio da pagina -->
-      <div id="page_nomedapagina" data-role="page" >
-	
+      <div id="pagina" data-role="page" >
 	<!-- Menu lateral esquerda-->
 	<?php include('menu-lateral.php'); ?>
 	<!-- /panel -->		
-	  
-
+	
 	<!-- Inicio cabecalho da pagina -->
 	<div data-role="header"> 
 		<a class="ui-icon-menu" href="#" data-role="button" data-icon="menu" data-theme="a">Menu</a>	
@@ -58,21 +43,24 @@ include_once ("login_util.php");
                             include'mensagens.php';
                             $xConteudo = ob_get_contents();
                             ob_end_clean();
-                            echo(getUsuarioLogadoID());
                             $xArrayConteudo = json_decode($xConteudo, true);
-                            if (is_array($xArrayConteudo['messages']))
-			    foreach ($xArrayConteudo['messages'] as $mensagem){
-                                ?>
-                                    <li>
-                                        <a href="conversacom.php?u=<? echo $mensagem['sender']; ?>">
-                                            <h3><? echo $mensagem['nome']; ?> </h3>
-                                            <p style="color: #b6b7b7;">Enviou <span class="date" title="<?  echo $mensagem['data']; ?>"></span></p>
-                                            <p ><? echo $mensagem['mensagem']; ?></p>
-                                        
-                                        </a>
-                                    </li>
-                                <? 
-                            }
+                            if ($xArrayConteudo['countnotread'] > 0)
+			      foreach ($xArrayConteudo['messages'] as $mensagem){
+				  ?>
+				      <li>
+					  <a href="conversacom.php?u=<? echo $mensagem['sender']; ?>">
+					      <h3><? echo $mensagem['nome']; ?> </h3>
+					      <p style="color: #b6b7b7;">Enviou <span class="date" title="<?  echo $mensagem['data']; ?>"></span></p>
+					      <p ><? echo $mensagem['mensagem']; ?></p>
+					  
+					  </a>
+				      </li>
+				  <? 
+			      }
+			    else{
+			      $xHtml = "<li> <h3>Voc&ecirc; n&atilde;o possui mensagens</h3> </li>";
+			      echo $xHtml;
+			    }
                             
                         ?>
 	</div>

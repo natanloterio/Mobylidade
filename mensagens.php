@@ -20,7 +20,8 @@ switch($acao){
         break;
     
     case 'setread':
-        setReadMessage($xUserRead, $xUserSend);
+        $xUsuarioSender = getUsuarioLogadoID();
+        setReadMessage($xUsuarioSender);
         break;
     
     case 'getmessages':
@@ -73,13 +74,40 @@ function getMessagesUsToUs($aUserA, $aUserB){
 }
 
 function getConversas(){
-    
-}
+    $xMessages = array();
+    $xSql = "SELECT USER.NOME_USUARIO, M1 . * ". 
+            "  FROM MENSAGENS M1 ".
+            " INNER JOIN USUARIOS USER ON M1.US_SENDER = USER.USUARIO_ID ".
+            "  LEFT JOIN MENSAGENS M2 ON M1.US_SENDER = M2.US_SENDER ".
+            "   AND M1.US_RECEIVER = M2.US_RECEIVER ".
+            "   AND M1.HORA < M2.HORA ".
+            " WHERE M2.ID IS NULL  ".
+            "   AND M1.US_RECEIVER = $aUserID ".
+            "   AND M1.US_SENDER <> $aUserID ".
+            " ORDER BY M1.HORA DESC ";
 
+        $xqueryMessages = ExecSQL($xSql);
+        $xCount = mysql_numrows($xqueryMessages);
+        $xMessages['countnotread'] = $xCount;
+        
+        for ($index = 0; $index < $xCount; $index++) {
+            $xCursor = mysql_fetch_array($xqueryMessages);
+            $xMensagem = array(  'sender' => $xCursor['us_sender'],
+                               'mensagem' => $xCursor['message'],
+                                   'nome' => $xCursor['NOME_USUARIO'],
+                                   'data' => $xCursor['hora'],
+                                   'lida' => $xCursor['lida']);
+            
+            
+            $xMessages['messages'][$index] = $xMensagem;
+        }
+        return json_encode($xMessages);
+}
+    
 function getCountMessagesNotRead($aUserID){
     $xMessages = array();
 
-    $xSql = "SELECT USER.NOME_USUARIO, M1 . * ".
+    $xSql = "SELECT USER.NOME_USUARIO, M1 . * ". 
             "  FROM MENSAGENS M1 ".
             " INNER JOIN USUARIOS USER ON M1.US_SENDER = USER.USUARIO_ID ".
             "  LEFT JOIN MENSAGENS M2 ON M1.US_SENDER = M2.US_SENDER ".
@@ -109,6 +137,6 @@ function getCountMessagesNotRead($aUserID){
         return json_encode($xMessages);
 }
 
-function setReadMessage($aUserRead, $aUserSend){
-    ExecSQL("UPDATE mensagens SET lida = 'S' WHERE us_receiver = $aUserRead AND us_sender = $aUserSend");
+function setReadMessage($aUser){
+    ExecSQL("UPDATE mensagens SET lida = 'S' WHERE us_receiver = $aUser");
 }

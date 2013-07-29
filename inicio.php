@@ -53,7 +53,8 @@ header($header);
 
     <body>
       <!-- Inicio da pagina -->
-      <div id="div_cadastrousuario" data-role="page" >
+      <div id="pagina" data-role="page" >
+      <!--<div id="div_cadastrousuario" data-role="page" >-->
 	
 	<!-- Menu lateral esquerda-->
 	<?php include('menu-lateral.php'); ?>

@@ -36,7 +36,8 @@
 
     <body>
   <!-- Inicio da pagina -->
-	<div id="div_cadastrousuario" data-role="page" >
+        <div id="pagina" data-role="page" >
+	<!--<div id="div_cadastrousuario" data-role="page" >-->
 	<?php include('menu-lateral.php'); ?>
 	  
 	  

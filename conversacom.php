@@ -47,7 +47,7 @@ $profileID = getPessoaID();
   <body>
    
       <!-- Inicio da pagina -->
-      <div id="page_nomedapagina" data-role="page" >
+      <div id="pagina" data-role="page" >
 	
 	<!-- Menu lateral esquerda-->
 	<?php include('menu-lateral.php'); ?>
