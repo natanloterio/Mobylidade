@@ -113,7 +113,9 @@ try {
 
 				."WHERE (UPPER(R.ORIGEM_CIDADE) LIKE UPPER('$origem_cidade')) "
 				."AND (UPPER(R.DESTINO_CIDADE) LIKE UPPER('$destino_cidade')) "
-				."AND R.EXCLUIDO <> 1";
+				."AND R.EXCLUIDO <> 1 "
+				."AND R.ID NOT IN(SELECT distinct ch.ROTA_ID FROM chamados ch WHERE 
+ch.STATUS=1 OR ch.STATUS=2 OR CH.status=3);";
 			
 	$result = ExecSQL($sql);
 	$linhas = array();

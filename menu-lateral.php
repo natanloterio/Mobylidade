@@ -67,7 +67,7 @@
 				<ul data-role="listview" data-theme="a">
 					
 					<?php if($tipo_usuario == 'E') {?>
-					
+					<li><a href="exibe_chamados_empresa.php" rel="external">Chamados recebidos</a></li>
 					<li><a href="meus_veiculos.php" rel="external">Meus Veiculos</a></li>
 					<li><a href="minhas_rotas.php" rel="external">Minhas Rotas</a></li>
 					
