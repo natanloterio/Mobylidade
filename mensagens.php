@@ -29,6 +29,11 @@ switch($acao){
         $xUserA = $_POST['u'];        
         echo getMessagesUsToUs($xUserA, $xUserB);
         break;
+    
+    case 'getConversas':
+        $xUsuario = getUsuarioLogadoID();
+        echo getConversas($xUsuario);
+        break;
 }
 
 function enviarMensagem($aUsSend, $aUsReceiver, $aMessage){
@@ -73,31 +78,32 @@ function getMessagesUsToUs($aUserA, $aUserB){
     return json_encode($xMessages);
 }
 
-function getConversas(){
+function getConversas($aUserID){
     $xMessages = array();
-    $xSql = "SELECT USER.NOME_USUARIO, M1 . * ". 
-            "  FROM MENSAGENS M1 ".
-            " INNER JOIN USUARIOS USER ON M1.US_SENDER = USER.USUARIO_ID ".
-            "  LEFT JOIN MENSAGENS M2 ON M1.US_SENDER = M2.US_SENDER ".
-            "   AND M1.US_RECEIVER = M2.US_RECEIVER ".
-            "   AND M1.HORA < M2.HORA ".
-            " WHERE M2.ID IS NULL  ".
-            "   AND M1.US_RECEIVER = $aUserID ".
-            "   AND M1.US_SENDER <> $aUserID ".
-            " ORDER BY M1.HORA DESC ";
 
+    $xSql = "SELECT m2.*, us.nome_usuario FROM (SELECT m1.* FROM mensagens m1 WHERE m1.us_receiver = $aUserID OR m1.us_sender = $aUserID ORDER BY m1.us_sender, m1.us_receiver, m1.hora DESC )m2 ".
+            "INNER JOIN USUARIOS us ON m2.US_SENDER = us.USUARIO_ID ".
+            "GROUP BY m2.us_sender ".
+            "ORDER BY m2.hora DESC " ;
+            
         $xqueryMessages = ExecSQL($xSql);
         $xCount = mysql_numrows($xqueryMessages);
         $xMessages['countnotread'] = $xCount;
         
         for ($index = 0; $index < $xCount; $index++) {
             $xCursor = mysql_fetch_array($xqueryMessages);
+            if ($xCursor['us_sender'] == $aUserID){
+                $xqueryName = ExecSQL('select nome_usuario from usuarios where USUARIO_ID = '.$xCursor['us_receiver']);
+                $xCursorName = mysql_fetch_array($xqueryName);
+                $xNome = $xCursorName['nome_usuario'];
+            }else            
+                $xNome = $xCursor['nome_usuario'];
+            
             $xMensagem = array(  'sender' => $xCursor['us_sender'],
                                'mensagem' => $xCursor['message'],
-                                   'nome' => $xCursor['NOME_USUARIO'],
+                                   'nome' => $xNome,
                                    'data' => $xCursor['hora'],
                                    'lida' => $xCursor['lida']);
-            
             
             $xMessages['messages'][$index] = $xMensagem;
         }

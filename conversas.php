@@ -36,7 +36,7 @@ include_once ("login_util.php");
         <div data-role="content" class="content"> 		   
 			<ul data-role="listview" data-theme="d">
                         <?
-                            $_POST['acao'] = 'getmessagesnotread';
+                            $_POST['acao'] = 'getConversas';
                             $_POST['u'] = getUsuarioLogadoID();
                             ob_start();
                             
@@ -44,13 +44,19 @@ include_once ("login_util.php");
                             $xConteudo = ob_get_contents();
                             ob_end_clean();
                             $xArrayConteudo = json_decode($xConteudo, true);
+			    $xUsuarioLogado = getUsuarioLogadoID();
                             if ($xArrayConteudo['countnotread'] > 0)
 			      foreach ($xArrayConteudo['messages'] as $mensagem){
+				  if ($mensagem['sender'] == $xUsuarioLogado)
+				    $xDescricaoEnviou = ' enviei ';
+				  else
+				    $xDescricaoEnviou = ' recebi '
+				    
 				  ?>
 				      <li>
 					  <a href="conversacom.php?u=<? echo $mensagem['sender']; ?>">
 					      <h3><? echo $mensagem['nome']; ?> </h3>
-					      <p style="color: #b6b7b7;">Enviou <span class="date" title="<?  echo $mensagem['data']; ?>"></span></p>
+					      <p style="color: #b6b7b7;"><? echo $xDescricaoEnviou; ?><span class="date" title="<?  echo $mensagem['data']; ?>"></span></p>
 					      <p ><? echo $mensagem['mensagem']; ?></p>
 					  
 					  </a>

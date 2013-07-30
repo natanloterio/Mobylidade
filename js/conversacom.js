@@ -33,9 +33,6 @@ function sendmessage() {
                     mensagem: xMessage 
             },
             dataType : 'html',
-            success : function(e) {
-                    alert('foi');
-            },
             error: function(e){
                 $('.pendente').css('color', '#F00');
             }
