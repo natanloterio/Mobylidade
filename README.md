@@ -7,3 +7,10 @@ Instalação:
 
 Descompacte os arquivos numa pasta do seu servidor. E edite o arquivo de configurações libs/config.php
 
+Licensa
+=========
+Este projeto está disponível para uso sob as normas GNU. Você poderá alterar livremente.
+
+Versão atual (1.0)
+==================
+Atualmente, estamos na versão 1.0
